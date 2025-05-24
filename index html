@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur d’Eau Atmosphérique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .highlight {
+            background-color: #dff0d8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2d572c;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .schema-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 200px;
+            font-weight: bold;
+            color: #555;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔷 Générateur d’Eau Atmosphérique</h1>
+
+        <div class="section">
+            <h2>1️⃣ Simulation de la Condensation (IA)</h2>
+            <p>
+                Cette section utilise un modèle d'intelligence artificielle pour prédire la quantité d'eau pouvant être extraite de l'air ambiant
+                en fonction de trois paramètres climatiques :
+            </p>
+            <ul>
+                <li>🌡️ Température (°C)</li>
+                <li>💧 Humidité relative (%)</li>
+                <li>🌬️ Pression atmosphérique (hPa)</li>
+                <li>⏱️ Temps d'extraction (secondes)</li>
+            </ul>
+
+            <form method="post" action="/predict" style="margin-top: 20px;">
+                <label for="temperature">🌡️ Température (°C) :</label><br>
+                <input type="number" step="0.1" name="temperature" id="temperature" required><br><br>
+
+                <label for="humidity">💧 Humidité relative (%) :</label><br>
+                <input type="number" step="0.1" name="humidity" id="humidity" required><br><br>
+
+                <label for="pressure">🌬️ Pression atmosphérique (hPa) :</label><br>
+                <input type="number" step="0.1" name="pressure" id="pressure" required><br><br>
+
+                <label for="temps">⏱️ Temps d'extraction (secondes) :</label><br>
+                <input type="number" step="1" name="temps" id="temps" required><br><br>
+
+                <button type="submit">🔎 Prédire l’eau condensée</button>
+            </form>
+
+            {% if prediction_h is defined %}
+                <div class="highlight">
+                    ✅ Prédiction IA : <strong>{{ eau_condensee }} kg</strong>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="section">
+            <h2>2️⃣ Machine Physique de Condensation</h2>
+            <p>
+                Cette section décrit le système réel utilisé pour générer de l'eau atmosphérique.
+                Il est basé sur des modules Peltier, des capteurs et un système de ventilation.
+            </p>
+            <div class="schema-placeholder">
+                [ Insérer un schéma ou une image ici ]
+            </div>
+
+            {% if temperature is defined and humidity is defined and pressure is defined %}
+                <div class="highlight">
+                    🌡️ Température : <strong>{{ temperature }} °C</strong><br>
+                    💧 Humidité : <strong>{{ humidity }} %</strong><br>
+                    🌬️ Pression : <strong>{{ pressure }} hPa</strong><br>
+                </div>
+            {% endif %}
+
+            {% if eau_condensee is defined %}
+                <div class="highlight">
+               
+                    ✅ Eau condensée (calculée) : <strong>{{ eau_condensee }} kg</strong><br>
+                    🌬️ Débit d'air : <strong>{{ debit_air }} kg/s</strong><br>
+                    🌫️ Point de rosée : <strong>{{ trose }} °C</strong><br>
+                    ❄️ Température de surface requise : <strong>{{ tout }} °C</strong>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
